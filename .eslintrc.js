@@ -170,9 +170,6 @@ module.exports = {
     'linebreak-style': ['error', 'unix'],
 
     // https://eslint.org/docs/rules/multiline-comment-style
-    'multiline-comment-style': ['warn', 'starred-block'],
-
-    // https://eslint.org/docs/rules/multiline-comment-style
     'comma-spacing': [
       'error',
       {

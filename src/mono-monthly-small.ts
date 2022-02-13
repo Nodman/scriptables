@@ -1,13 +1,13 @@
-/*
- * Variables used by Scriptable.
- * These must be at the very top of the file. Do not edit.
- * icon-color: blue; icon-glyph: hand-holding-usd;
- */
+// Variables used by Scriptable.
+// These must be at the very top of the file. Do not edit.
+// icon-color: blue; icon-glyph: hand-holding-usd;
 
 /*
  * author: https://github.com/Nodman
  * track expanses from monobank account with small widget
  */
+
+'use strict'
 
 import { createWidget } from './tiny-dashboard'
 import { numberFormatterShort, parseWidgetParams } from './utils'
@@ -45,6 +45,7 @@ async function exec() {
   Script.complete()
 
   if (config.runsInApp) {
+    monobank.showSettings()
     widget.presentSmall()
   }
 }

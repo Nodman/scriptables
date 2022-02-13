@@ -1,13 +1,13 @@
-/*
- * Variables used by Scriptable.
- * These must be at the very top of the file. Do not edit.
- * icon-color: blue; icon-glyph: columns;
- */
+// Variables used by Scriptable.
+// These must be at the very top of the file. Do not edit.
+// icon-color: blue; icon-glyph: columns;
 
 /*
  * author: https://github.com/Nodman
  * small widget layout with graph
  */
+
+'use strict'
 
 import { getDynamicGradient, getDynamicColor, parseWidgetParams, getDeviceAppearance } from './utils'
 import type { PaletteT } from './utils.types'

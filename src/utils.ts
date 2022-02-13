@@ -1,16 +1,17 @@
-/*
- * Variables used by Scriptable.
- * These must be at the very top of the file. Do not edit.
- * icon-color: deep-purple; icon-glyph: wrench;
- */
+// Variables used by Scriptable.
+// These must be at the very top of the file. Do not edit.
+// icon-color: deep-purple; icon-glyph: wrench;
 
 /*
  * author: https://github.com/Nodman
  * few common utils I use across scriptable widgets
  */
 
+'use strict'
+
 import { PaletteT, DynamicPaletteT } from './utils.types'
 
+const SCRIPT_NAME = 'utils'
 const DEBUG = true
 const ERROR_NOTIFICATION_ID = '_error'
 
@@ -193,4 +194,43 @@ export const currencyFormatter = new Intl.NumberFormat('uk-UA', {
 
 export const getDeviceAppearance = (): 'dark' | 'light' => {
   return Device.isUsingDarkAppearance() ? 'dark' : 'light'
+}
+
+// taken from Max Zeryck blur script
+export const updateCode = async (url: string) => {
+  const updateAlert = createAlert('Update code?', '', 'Nope')
+
+  updateAlert.addAction('Yesh')
+
+  const actionIndex = await updateAlert.present()
+
+  if (actionIndex === -1) {
+    return
+  }
+
+  // Determine if the user is using iCloud.
+  let files = FileManager.local()
+  const iCloudInUse = files.isFileStoredIniCloud(module.filename)
+
+  // If so, use an iCloud file manager.
+  files = iCloudInUse ? FileManager.iCloud() : files
+
+  let message = ''
+
+  // Try to download the file.
+  try {
+    const req = new Request(url)
+    const codeString = await req.loadString()
+
+    files.writeString(module.filename, codeString)
+    message = 'The code has been updated. If the script is open, close it for the change to take effect.'
+  } catch {
+    message = 'The update failed. Please try again later.'
+  }
+
+  await createAlert('Update code', message).present()
+}
+
+if (config.runsInApp && Script.name() === SCRIPT_NAME) {
+  updateCode('https://raw.githubusercontent.com/Nodman/scripables/main/src/utils.ts')
 }

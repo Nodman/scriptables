@@ -1,8 +1,6 @@
-/*
- * Variables used by Scriptable.
- * These must be at the very top of the file. Do not edit.
- * icon-color: deep-gray; icon-glyph: university;
- */
+// Variables used by Scriptable.
+// These must be at the very top of the file. Do not edit.
+// icon-color: deep-gray; icon-glyph: university;
 
 /*
  * author: https://github.com/Nodman
@@ -10,6 +8,8 @@
  */
 
 // NOTE: This script uses the Cache script (https://github.com/yaylinda/scriptable/blob/main/Cache.js)
+
+'use strict'
 
 import { fetchJson, createAlert, getDaysInMonth, Logger } from './utils'
 
@@ -551,6 +551,10 @@ If you don't have one - please visit https://api.monobank.ua and follow the inst
   }
 
   async pickScript() {
+    if (this.parentScriptName) {
+      return
+    }
+
     const settngs = await this.readSettings()
     const keys = Object.keys(settngs ?? {})
     const selectScriptAlert = createAlert('Select script to modify', '', 'Cancel')

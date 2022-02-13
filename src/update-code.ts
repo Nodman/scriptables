@@ -16,8 +16,11 @@ const SCRIPTS = [
 const URL = 'https://raw.githubusercontent.com/Nodman/scripables/main/build'
 
 // taken from Max Zeryck blur script
-const updateCode = async (url: string) => {
+const updateCode = async (scriptName: string) => {
   const alert = new Alert()
+
+  const moduleName = `${scriptName}.js`
+  const url = `${URL}/${moduleName}`
 
   alert.title = `Update "${Script.name()}" code?`
   alert.addCancelAction('Nope')
@@ -32,7 +35,7 @@ const updateCode = async (url: string) => {
 
   // Determine if the user is using iCloud.
   let files = FileManager.local()
-  const iCloudInUse = files.isFileStoredIniCloud(module.filename)
+  const iCloudInUse = files.isFileStoredIniCloud(moduleName)
 
   // If so, use an iCloud file manager.
   files = iCloudInUse ? FileManager.iCloud() : files
@@ -44,7 +47,7 @@ const updateCode = async (url: string) => {
     const req = new Request(url)
     const codeString = await req.loadString()
 
-    files.writeString(module.filename, codeString)
+    files.writeString(moduleName, codeString)
     message = 'The code has been updated. If the script is open, close it for the change to take effect.'
   } catch {
     message = 'The update failed. Please try again later.'
@@ -71,9 +74,7 @@ SCRIPTS.forEach(item => {
 const actionIndex = await selectScriptAlert.presentSheet()
 
 if (actionIndex !== -1) {
-  const url = `${URL}/${SCRIPTS[actionIndex]}.js`
-
-  await updateCode(url)
+  await updateCode(SCRIPTS[actionIndex])
 }
 
 export {}

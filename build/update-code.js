@@ -9,8 +9,10 @@ Object.defineProperty(exports, "__esModule", {
 const SCRIPTS = ['utils', 'tiny-dashboard', 'tiny-charts', 'mono-monthly-small', 'update-code', 'monobank'];
 const URL = 'https://raw.githubusercontent.com/Nodman/scripables/main/build'; // taken from Max Zeryck blur script
 
-const updateCode = async url => {
+const updateCode = async scriptName => {
   const alert = new Alert();
+  const moduleName = `${scriptName}.js`;
+  const url = `${URL}/${moduleName}`;
   alert.title = `Update "${Script.name()}" code?`;
   alert.addCancelAction('Nope');
   alert.addAction('Yesh');
@@ -22,7 +24,7 @@ const updateCode = async url => {
 
 
   let files = FileManager.local();
-  const iCloudInUse = files.isFileStoredIniCloud(module.filename); // If so, use an iCloud file manager.
+  const iCloudInUse = files.isFileStoredIniCloud(moduleName); // If so, use an iCloud file manager.
 
   files = iCloudInUse ? FileManager.iCloud() : files;
   let message = ''; // Try to download the file.
@@ -30,7 +32,7 @@ const updateCode = async url => {
   try {
     const req = new Request(url);
     const codeString = await req.loadString();
-    files.writeString(module.filename, codeString);
+    files.writeString(moduleName, codeString);
     message = 'The code has been updated. If the script is open, close it for the change to take effect.';
   } catch {
     message = 'The update failed. Please try again later.';
@@ -52,6 +54,5 @@ SCRIPTS.forEach(item => {
 const actionIndex = await selectScriptAlert.presentSheet();
 
 if (actionIndex !== -1) {
-  const url = `${URL}/${SCRIPTS[actionIndex]}.js`;
-  await updateCode(url);
+  await updateCode(SCRIPTS[actionIndex]);
 }

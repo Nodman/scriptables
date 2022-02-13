@@ -101,8 +101,4 @@ export class TinyCharts {
   }
 }
 
-if (config.runsInApp && Script.name() === SCRIPT_NAME) {
-  const updateCode = importModule('./utils')
-
-  await updateCode('https://raw.githubusercontent.com/Nodman/scripables/main/src/tiny-charts.ts')
-}
+Script.complete()

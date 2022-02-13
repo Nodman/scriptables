@@ -11,7 +11,7 @@
 
 'use strict'
 
-import { fetchJson, createAlert, getDaysInMonth, Logger, updateCode } from './utils'
+import { fetchJson, createAlert, getDaysInMonth, Logger } from './utils'
 
 const Cache = importModule('cache')
 
@@ -618,8 +618,7 @@ If you don't have one - please visit https://api.monobank.ua and follow the inst
 }
 
 if (config.runsInApp && Script.name() === SCRIPT_NAME) {
-  await updateCode('https://raw.githubusercontent.com/Nodman/scripables/main/src/monobank.ts')
   const monobank = new Monobank()
 
-  await monobank.showSettings()
+  monobank.showSettings()
 }

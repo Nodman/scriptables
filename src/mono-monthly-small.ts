@@ -10,7 +10,7 @@
 'use strict'
 
 import { createWidget } from './tiny-dashboard'
-import { numberFormatterShort, parseWidgetParams, updateCode } from './utils'
+import { numberFormatterShort, parseWidgetParams } from './utils'
 import { Monobank } from './monobank'
 
 const SCRIPT_NAME = 'mono-monthly-small'
@@ -42,13 +42,17 @@ async function exec() {
   })
 
   Script.setWidget(widget)
-  Script.complete()
 
-  if (config.runsInApp) {
-    await updateCode('https://raw.githubusercontent.com/Nodman/scripables/main/src/mono-monthly-small.ts')
-    await monobank.showSettings()
-    widget.presentSmall()
-  }
+  return widget
 }
 
-await exec()
+
+if (config.runsInApp) {
+  const widget = await exec()
+
+  await widget.presentSmall()
+} else {
+  await exec()
+}
+
+Script.complete()

@@ -247,5 +247,5 @@ export function createWidget({ value, chartData, subtitle1, subtitle2, headerSym
 
 
 if (config.runsInApp && Script.name() === SCRIPT_NAME) {
-  updateCode('https://raw.githubusercontent.com/Nodman/scripables/main/src/tiny-dashboard.ts')
+  await updateCode('https://raw.githubusercontent.com/Nodman/scripables/main/src/tiny-dashboard.ts')
 }

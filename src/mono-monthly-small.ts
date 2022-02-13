@@ -45,8 +45,8 @@ async function exec() {
   Script.complete()
 
   if (config.runsInApp) {
-    updateCode('https://raw.githubusercontent.com/Nodman/scripables/main/src/mono-monthly-small.ts')
-    monobank.showSettings()
+    await updateCode('https://raw.githubusercontent.com/Nodman/scripables/main/src/mono-monthly-small.ts')
+    await monobank.showSettings()
     widget.presentSmall()
   }
 }

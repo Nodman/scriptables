@@ -232,5 +232,5 @@ export const updateCode = async (url: string) => {
 }
 
 if (config.runsInApp && Script.name() === SCRIPT_NAME) {
-  updateCode('https://raw.githubusercontent.com/Nodman/scripables/main/src/utils.ts')
+  await updateCode('https://raw.githubusercontent.com/Nodman/scripables/main/src/utils.ts')
 }

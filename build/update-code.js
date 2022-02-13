@@ -39,7 +39,7 @@ const updateCode = async url => {
   const confirmAlert = new Alert();
   confirmAlert.title = 'Update code';
   confirmAlert.message = message;
-  confirmAlert.addCancelAction('Nope');
+  confirmAlert.addCancelAction('Ok');
   await confirmAlert.present();
 };
 

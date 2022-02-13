@@ -54,7 +54,7 @@ const updateCode = async (url: string) => {
 
   confirmAlert.title = 'Update code'
   confirmAlert.message = message
-  confirmAlert.addCancelAction('Nope')
+  confirmAlert.addCancelAction('Ok')
 
   await confirmAlert.present()
 }

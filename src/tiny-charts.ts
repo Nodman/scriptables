@@ -9,6 +9,8 @@
 
 'use strict'
 
+const SCRIPT_NAME = 'tiny-charts'
+
 export class TinyCharts {
   context: DrawContext
   width: number
@@ -97,4 +99,10 @@ export class TinyCharts {
   getImage() {
     return this.context.getImage()
   }
+}
+
+if (config.runsInApp && Script.name() === SCRIPT_NAME) {
+  const updateCode = importModule('./utils')
+
+  updateCode('https://raw.githubusercontent.com/Nodman/scripables/main/src/tiny-charts.ts')
 }

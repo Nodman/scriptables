@@ -9,10 +9,11 @@
 
 'use strict'
 
-import { getDynamicGradient, getDynamicColor, parseWidgetParams, getDeviceAppearance } from './utils'
+import { getDynamicGradient, getDynamicColor, parseWidgetParams, getDeviceAppearance, updateCode } from './utils'
 import type { PaletteT } from './utils.types'
 import { TinyCharts } from './tiny-charts'
 
+const SCRIPT_NAME = 'tiny-dashboard'
 const GAP = 10
 const SYMBOL_SIZE = 16
 const GRAPH_OPACITY = 0.3
@@ -242,4 +243,9 @@ export function createWidget({ value, chartData, subtitle1, subtitle2, headerSym
   }
 
   return listWidget
+}
+
+
+if (config.runsInApp && Script.name() === SCRIPT_NAME) {
+  updateCode('https://raw.githubusercontent.com/Nodman/scripables/main/src/tiny-dashboard.ts')
 }

@@ -42,6 +42,7 @@ async function exec() {
   } = Monobank.getStatsForPeriod({
     history
   });
+  monthlyHistory.push(currentPeriod.total);
   const widget = createWidget({
     chartData: monthlyHistory,
     subtitle1: `${numberFormatterShort(daily / 100)} DAILY / ${numberFormatterShort(monthly / 100)} MONTHLY`,

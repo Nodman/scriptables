@@ -1,0 +1,28 @@
+{
+  "name": "scriptables",
+  "version": "1.0.0",
+  "description": "collection of my scriptable projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel ./src -d build --extensions '.ts'",
+    "copy": "cp -Rv ./build/. ~/Library/Mobile\\ Documents/iCloud~dk~simonbs~Scriptable/Documents",
+    "copyi": "cp -Riv ./build/. ~/Library/Mobile\\ Documents/iCloud~dk~simonbs~Scriptable/Documents",
+    "dist": "npm run build; npm run copyi",
+    "distall": "npm run build; npm run copy"
+  },
+  "author": "Dmytro Burmistrov (Nodman). https://github.com/Nodman",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.12",
+    "@babel/plugin-transform-modules-commonjs": "^7.16.8",
+    "@babel/preset-typescript": "^7.16.7",
+    "@scriptable-ios/eslint-config": "^1.6.4",
+    "@types/scriptable-ios": "^1.6.5",
+    "@typescript-eslint/eslint-plugin": "^5.11.0",
+    "@typescript-eslint/parser": "^5.11.0",
+    "eslint": "^8.8.0",
+    "typescript": "^4.5.5"
+  }
+}

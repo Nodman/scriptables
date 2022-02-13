@@ -1,0 +1,8 @@
+{
+  "plugins": [
+    "./babel-plugin/babel-transform-import-scriptable.js",
+    "@babel/plugin-transform-modules-commonjs"
+  ],
+  "presets": ["@babel/preset-typescript"],
+  "ignore": ["./src/*.types.ts"]
+}

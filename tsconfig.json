@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "lib": ["ES2020"],
+    "target": "ES2020",
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "typeRoots": ["node_modules/@types"],
+    "types": ["scriptable-ios"],
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./build",
+    "esModuleInterop": false
+  },
+  "include": ["src/*"],
+  "exclude": ["src/**/*.types.ts"]
+}

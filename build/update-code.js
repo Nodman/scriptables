@@ -11,7 +11,7 @@ const URL = 'https://raw.githubusercontent.com/Nodman/scripables/main/build'; //
 
 const updateCode = async url => {
   const alert = new Alert();
-  alert.title = `Update ${Script.name()} code?`;
+  alert.title = `Update "${Script.name()}" code?`;
   alert.addCancelAction('Nope');
   alert.addAction('Yesh');
   const actionIndex = await alert.present();

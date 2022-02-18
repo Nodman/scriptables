@@ -184,7 +184,11 @@ class Monobank {
           return;
 
         case 1:
-          return Keychain.remove(MONOBANK_TOKEN_KEY);
+          {
+            Keychain.remove(MONOBANK_TOKEN_KEY);
+            await createAlert('Token removed', '', 'Ok').present();
+            return;
+          }
       }
     }
 
@@ -194,31 +198,35 @@ If you don't have one - please visit https://api.monobank.ua and follow the inst
     setupAlert.addAction('https://api.monobank.ua');
     const setupActionIndex = await setupAlert.presentSheet();
 
+    const presentInputAlert = async () => {
+      const inputAlert = createAlert('Insert token', 'Your token will be saved in Keychain', 'Cancel');
+      inputAlert.addAction('Save');
+      inputAlert.addSecureTextField('token:');
+      const inputActionIndex = await inputAlert.present();
+      const tokenValue = inputAlert.textFieldValue(0);
+
+      if (inputActionIndex === -1) {
+        return;
+      }
+
+      if (tokenValue) {
+        Keychain.set(MONOBANK_TOKEN_KEY, tokenValue);
+        await createAlert('Token saved', '', 'Ok').present();
+      } else {
+        await createAlert('Invalid token value', '', 'Ok').present();
+      }
+    };
+
     switch (setupActionIndex) {
       case 0:
         {
-          const inputAlert = createAlert('Insert token', 'Your token will be saved in Keychain', 'Cancel');
-          inputAlert.addAction('Save');
-          inputAlert.addSecureTextField('token:');
-          const inputActionIndex = await inputAlert.present();
-          const tokenValue = inputAlert.textFieldValue(0);
-
-          if (inputActionIndex === -1) {
-            break;
-          }
-
-          if (tokenValue) {
-            Keychain.set(MONOBANK_TOKEN_KEY, tokenValue);
-            createAlert('Token saved', '', 'Ok').present();
-          } else {
-            createAlert('Invalid token value', '', 'Ok').present();
-          }
-
+          await presentInputAlert();
           break;
         }
 
       case 1:
-        Safari.openInApp('https://api.monobank.ua');
+        await Safari.openInApp('https://api.monobank.ua');
+        await presentInputAlert();
         break;
     }
   }
@@ -245,7 +253,7 @@ If you don't have one - please visit https://api.monobank.ua and follow the inst
     settings[scriptName] = settings[scriptName] ?? {};
     settings[scriptName].filter = nextFilter;
     await this.writeSettings(settings);
-    createAlert('Filters saved', '', 'Ok').present();
+    await createAlert('Filters saved', '', 'Ok').present();
   }
 
   async setupAccount(parentScriptName) {
@@ -466,7 +474,7 @@ If you don't have one - please visit https://api.monobank.ua and follow the inst
     }
 
     await cache.write(accountCacheKey, statement);
-    createAlert('Successfuly updated', '', 'Ok').present();
+    await createAlert('Successfuly updated', '', 'Ok').present();
   }
 
   async editStatementItem(parentScriptName) {

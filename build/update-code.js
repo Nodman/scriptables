@@ -13,9 +13,11 @@ const updateCode = async scriptName => {
   const alert = new Alert();
   const moduleName = `${scriptName}.js`;
   const url = `${URL}/${moduleName}`;
-  alert.title = `Update "${Script.name()}" code?`;
+  const path = [...module.filename.split('/').slice(0, -1), moduleName].join('/');
+  alert.title = `Update "${moduleName}" code?`;
+  alert.message = 'This will overwrite any of your local changes!';
   alert.addCancelAction('Nope');
-  alert.addAction('Yesh');
+  alert.addDestructiveAction('Yesh');
   const actionIndex = await alert.present();
 
   if (actionIndex === -1) {
@@ -24,7 +26,7 @@ const updateCode = async scriptName => {
 
 
   let files = FileManager.local();
-  const iCloudInUse = files.isFileStoredIniCloud(moduleName); // If so, use an iCloud file manager.
+  const iCloudInUse = files.isFileStoredIniCloud(path); // If so, use an iCloud file manager.
 
   files = iCloudInUse ? FileManager.iCloud() : files;
   let message = ''; // Try to download the file.
@@ -32,7 +34,7 @@ const updateCode = async scriptName => {
   try {
     const req = new Request(url);
     const codeString = await req.loadString();
-    files.writeString(moduleName, codeString);
+    files.writeString(path, codeString);
     message = 'The code has been updated. If the script is open, close it for the change to take effect.';
   } catch {
     message = 'The update failed. Please try again later.';

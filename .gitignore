@@ -29,3 +29,5 @@ yarn.lock
 .vim/
 *.vim
 
+# releases
+*.zip

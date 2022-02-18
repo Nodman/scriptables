@@ -112,12 +112,12 @@ const TYPOGRAPHY = {
   caption: 8,
 }
 
-function getPalette() {
+function getPalette(palette: { light?: string, dark?: string } = {}) {
   const { light, dark } = parseWidgetParams(args.widgetParameter)
 
   return {
-    light: PALETTES[light] ?? PALETTES.dull,
-    dark: PALETTES[dark] ?? PALETTES.sandblue,
+    light: PALETTES[palette.light ?? light] ?? PALETTES.dull,
+    dark: PALETTES[palette.dark ?? dark] ?? PALETTES.sandblue,
   }
 }
 
@@ -131,9 +131,19 @@ type ArgsT = {
   chartData?: number[],
 }
 
-export function createWidget({ value, chartData, subtitle1, subtitle2, headerSymbol: headerSymbolProp, header, subValue }: ArgsT) {
+export function createWidget(args: ArgsT, theme?: { light?: string, dark?: string }) {
+  const {
+    value,
+    chartData,
+    subtitle1,
+    subtitle2,
+    headerSymbol: headerSymbolProp,
+    header,
+    subValue,
+  } = args
+
   const appearence = getDeviceAppearance()
-  const palette = getPalette()
+  const palette = getPalette(theme)
   const listWidget = new ListWidget()
   const textColor = getDynamicColor(palette, 'primary')
   const titleColor = getDynamicColor(palette, 'accent')

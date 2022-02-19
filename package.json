@@ -1,6 +1,6 @@
 {
   "name": "scriptables",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "collection of my scriptable projects",
   "main": "index.js",
   "scripts": {

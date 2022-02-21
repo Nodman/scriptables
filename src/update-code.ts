@@ -13,7 +13,7 @@ const SCRIPTS = [
   'monobank',
 ]
 
-const URL = 'https://raw.githubusercontent.com/Nodman/scripables/main/build'
+const URL = 'https://raw.githubusercontent.com/Nodman/scriptables/main/build'
 
 // taken from Max Zeryck blur script
 const updateCode = async (scriptName: string) => {

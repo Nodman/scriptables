@@ -1,4 +1,4 @@
-# scripables
+# scriptables
 my small collection of scripts to be used with [scriptable.app](https://scriptable.app)
 
 ### [tiny-dashboard](https://github.com/Nodman/scripables/blob/main/src/tiny-dashboard.ts):

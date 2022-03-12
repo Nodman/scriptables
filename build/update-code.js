@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 const SCRIPTS = ['utils', 'tiny-dashboard', 'tiny-charts', 'mono-monthly-small', 'update-code', 'monobank'];
-const URL = 'https://raw.githubusercontent.com/Nodman/scripables/main/build'; // taken from Max Zeryck blur script
+const URL = 'https://raw.githubusercontent.com/Nodman/scriptables/main/build'; // taken from Max Zeryck blur script
 
 const updateCode = async scriptName => {
   const alert = new Alert();

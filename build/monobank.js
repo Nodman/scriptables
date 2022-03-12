@@ -473,6 +473,10 @@ If you don't have one - please visit https://api.monobank.ua and follow the inst
       item.amount = item.amount + editAmount;
     }
 
+    const nextTotal = statement.currentPeriod.statement.reduce((total, day) => {
+      return day ? total + day.reduce((acc, item) => item ? -1 * item.amount + acc : acc, 0) : total;
+    }, 0);
+    statement.currentPeriod.total = nextTotal;
     await cache.write(accountCacheKey, statement);
     await createAlert('Successfuly updated', '', 'Ok').present();
   }

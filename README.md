@@ -3,15 +3,14 @@ my small collection of scripts to be used with [scriptable.app](https://scriptab
 
 ### [tiny-dashboard](https://github.com/Nodman/scripables/blob/main/src/tiny-dashboard.ts):
 
-
-![tiny-dashboard preview](https://github.com/Nodman/scripables/blob/main/.github/screenshots/tiny-dashboard/preview.png?raw=true)
+<img src="https://github.com/Nodman/scripables/blob/main/.github/screenshots/tiny-dashboard/preview.png" data-canonical-src="https://github.com/Nodman/scripables/blob/main/.github/screenshots/tiny-dashboard/preview.png" width="50%" height="50%" />
 
 Small-size widget with several text fields, graph and icon, supports dynamic dark / light mode and has 12 builtin themes.
 
 Themes can be configured through widget params: ***dark=sandblue;light=royal***
 
 <details>
-<summary>themes preview</summary>
+<summary>themes preview (expandable)</summary>
 
 *NOTE:*
 
